@@ -1,0 +1,28 @@
+
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>Detalhes do Produto</title>
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+  <div class="container">
+    <div class="imagem">
+      <img src="/static/pc.png" alt="">
+    </div>
+    <section class="Info">
+      <strong><h1 id="nome">Nome do produto</h1>
+      <p id="detalhes">detalhes</p></strong>
+      <br><hr>
+      <h2 id="valor">Valor</h2>
+    </section>
+    <section class="Grafico">
+      <canvas id="graficoPreco" width="400" height="200"></canvas>
+    </section>
+    <a href="/"><img src="/static/x.png" class="sair"></a>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="/static/script.js"></script>
+</body>
+</html>

@@ -1,0 +1,29 @@
+
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>Lista de Notebooks</title>
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+  <div id="lista-produtos" class="container" style="display: flex; flex-direction: column; gap: 20px; color: black;"></div>
+  <script>
+    async function carregarProdutos() {
+      const resposta = await fetch('/api/dados');
+      const produtos = await resposta.json();
+      const container = document.getElementById('lista-produtos');
+      produtos.forEach((produto, index) => {
+        const div = document.createElement('div');
+        div.innerHTML = `
+          <h3>${produto.nome}</h3>
+          <p>${produto.valor}</p>
+          <button onclick="window.location.href='/detalhes.html?id=${index}'">Ver mais</button>
+        `;
+        container.appendChild(div);
+      });
+    }
+    carregarProdutos();
+  </script>
+</body>
+</html>

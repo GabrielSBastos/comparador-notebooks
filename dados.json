@@ -1,0 +1,27 @@
+[
+  {
+    "nome": "Notebook Acer Aspire 5",
+    "valor": "R$ 3.199,00",
+    "link": "https://www.mercadolivre.com.br/"
+  },
+  {
+    "nome": "Notebook Dell Inspiron 15",
+    "valor": "R$ 3.499,00",
+    "link": "https://www.mercadolivre.com.br/"
+  },
+  {
+    "nome": "Notebook Lenovo IdeaPad 3",
+    "valor": "R$ 2.899,00",
+    "link": "https://www.mercadolivre.com.br/"
+  },
+  {
+    "nome": "Notebook Samsung Book",
+    "valor": "R$ 3.299,00",
+    "link": "https://www.mercadolivre.com.br/"
+  },
+  {
+    "nome": "Notebook Asus VivoBook",
+    "valor": "R$ 3.099,00",
+    "link": "https://www.mercadolivre.com.br/"
+  }
+]

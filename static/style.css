@@ -1,0 +1,60 @@
+
+body {
+    margin: 0;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(to right, rgb(203, 230, 203), rgb(115, 191, 235));
+    font-family: Arial, sans-serif;
+    color: white;
+}
+
+.container {
+    display: grid;
+    align-items: center;
+    width: 70%;
+    height: 65%;
+    gap: 1rem;
+    grid-template-columns: .7fr auto;
+    grid-template-rows: 15rem auto;
+    background-color: rgb(255, 255, 255);
+    padding: 40px;
+    border-radius: 20px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    color: black;
+}
+
+.imagem {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    grid-row-start: 1;
+    grid-row-end: 3;
+    align-self: center;
+}
+
+.Info {
+    margin-right: 3rem;
+}
+
+.Grafico {
+    display: flex;
+    justify-content: center;
+}
+
+img {
+    width: 35rem;
+    height: 35rem;
+}
+
+h2 {
+    color: rgb(226, 103, 165);
+}
+
+.sair {
+    position: fixed;
+    top: 9rem;
+    width: 44px;
+    height: 40px;
+}
