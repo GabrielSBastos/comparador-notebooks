@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -9,20 +8,70 @@
 <body>
   <div class="container">
     <div class="imagem">
-      <img src="/static/pc.png" alt="">
+      <img id="imagem-produto" src="/static/pc.png" alt="Notebook">
     </div>
     <section class="Info">
-      <strong><h1 id="nome">Nome do produto</h1>
-      <p id="detalhes">detalhes</p></strong>
+      <strong>
+        <h1 id="nome">Nome do produto</h1>
+        <p id="detalhes">Detalhes</p>
+        <p><strong>Avaliação:</strong> <span id="avaliacao">---</span></p>
+      </strong>
       <br><hr>
       <h2 id="valor">Valor</h2>
     </section>
     <section class="Grafico">
       <canvas id="graficoPreco" width="400" height="200"></canvas>
     </section>
-    <a href="/"><img src="/static/x.png" class="sair"></a>
+    <a href="/"><img src="/static/x.png" class="sair" alt="Voltar"></a>
   </div>
+
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-  <script src="/static/script.js"></script>
+  <script>
+    async function carregarDetalhes() {
+      const urlParams = new URLSearchParams(window.location.search);
+      const id = urlParams.get('id');
+
+      const resposta = await fetch('/api/dados');
+      const produtos = await resposta.json();
+      const produto = produtos[id];
+
+      document.getElementById("nome").textContent = produto.nome;
+      document.getElementById("detalhes").textContent = produto.detalhes || "Sem detalhes adicionais";
+      document.getElementById("valor").textContent = produto.valor;
+      document.getElementById("imagem-produto").src = produto.imagem;
+      document.getElementById("avaliacao").textContent = produto.avaliacao || "Sem avaliação";
+
+      const historico = produto.historico || [];
+
+      const valores = historico.map(item => parseFloat(item.valor.replace(/[^\d,]/g, '').replace(',', '.')));
+      const labels = historico.map(item => item.data);
+
+      const ctx = document.getElementById('graficoPreco').getContext('2d');
+      new Chart(ctx, {
+        type: 'line',
+        data: {
+          labels: labels,
+          datasets: [{
+            label: 'Preço (R$)',
+            data: valores,
+            borderWidth: 2,
+            borderColor: '#4CAF50',
+            fill: false,
+            tension: 0.3
+          }]
+        },
+        options: {
+          responsive: true,
+          scales: {
+            y: {
+              beginAtZero: false
+            }
+          }
+        }
+      });
+    }
+
+    carregarDetalhes();
+  </script>
 </body>
 </html>

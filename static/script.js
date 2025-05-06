@@ -1,4 +1,3 @@
-
 async function carregarDetalhes() {
   const urlParams = new URLSearchParams(window.location.search);
   const id = urlParams.get('id');
@@ -11,8 +10,15 @@ async function carregarDetalhes() {
   document.getElementById("detalhes").textContent = produto.detalhes || "Sem detalhes adicionais";
   document.getElementById("valor").textContent = produto.valor;
 
-  const historico = produto.historico || [produto.valor];
+  // Atualiza imagem do produto
+  const imagemEl = document.getElementById("imagem-produto");
+  if (imagemEl && produto.imagem) {
+    imagemEl.src = produto.imagem;
+    imagemEl.alt = produto.nome;
+  }
 
+  // Prepara dados para o gráfico
+  const historico = produto.historico || [produto.valor];
   const valores = historico.map(v => parseFloat(v.replace(/[^\d,]/g, '').replace(',', '.')));
   const labels = historico.map((_, i) => `Dia ${i + 1}`);
 
@@ -24,9 +30,21 @@ async function carregarDetalhes() {
       datasets: [{
         label: 'Preço (R$)',
         data: valores,
-        borderWidth: 2
+        borderWidth: 2,
+        borderColor: '#4CAF50',
+        fill: false,
+        tension: 0.2
       }]
+    },
+    options: {
+      responsive: true,
+      scales: {
+        y: {
+          beginAtZero: false
+        }
+      }
     }
   });
 }
+
 carregarDetalhes();
